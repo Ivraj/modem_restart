@@ -1,0 +1,8 @@
+#! /bin/bash -e
+
+crontab -l > /etc/network/mycron
+echo '@reboot python /etc/network/restart_modem.py' >> /etc/network/mycron 
+echo '*/1 * * * * python /etc/network/restart_modem.py' >> /etc/network/mycron 
+echo '' >> /etc/network/mycron 
+crontab -u pi /etc/network/mycron
+rm /etc/network/mycron
